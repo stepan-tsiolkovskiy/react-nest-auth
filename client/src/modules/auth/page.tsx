@@ -9,6 +9,8 @@ const AuthPage = () => {
 
   const isActiveTab = activeTab === AuthEmum.SIGN_IN;
 
+  console.log(isActiveTab);
+
   return <Overlay>{isActiveTab ? <SignIn /> : <SignUp />}</Overlay>;
 };
 
