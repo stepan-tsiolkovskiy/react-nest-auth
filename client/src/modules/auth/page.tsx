@@ -1,7 +1,6 @@
+import { SignIn, SignUp } from "./components";
 import Overlay from "./components/Overlay/Overlay";
 import { useAuthState } from "./context/hooks/useAuthState";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
 import { AuthEmum } from "./types/auth.enum";
 
 const AuthPage = () => {
