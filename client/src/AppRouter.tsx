@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AuthPage from "./modules/auth/page";
+import AuthModule from "./modules/auth";
 
 const AppRouter = () => {
   return (
     <Router>
       <Routes>
-        <Route path="auth/*" element={<AuthPage />} />
+        <Route path="auth/*" element={<AuthModule />} />
       </Routes>
     </Router>
   );

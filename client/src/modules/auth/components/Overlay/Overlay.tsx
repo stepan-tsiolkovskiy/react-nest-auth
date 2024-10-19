@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import "./index.css";
 import useChangeActiveTab from "../../hooks/useChangeActiveTab";
 import { AuthEmum } from "../../types/auth.enum";
