@@ -1,5 +1,8 @@
 import { ReactNode } from "react";
 import Overlay from "./components/Overlay/Overlay";
+import AuthProvider from "./providers/AuthProvider";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 interface AuthLayoutProps {
   children: ReactNode;
@@ -7,9 +10,9 @@ interface AuthLayoutProps {
 
 const AuthLayout = ({ children }: AuthLayoutProps) => {
   return (
-    <>
-      <Overlay>{children}</Overlay>
-    </>
+    <AuthProvider>
+      <Overlay />
+    </AuthProvider>
   );
 };
 

@@ -1,53 +1,38 @@
 import { ReactNode, useState } from "react";
-import { AuthEmum } from "../../types/auth.enum";
 import "./index.css";
+import SignUp from "../../pages/SignUp";
+import SignIn from "../../pages/SignIn";
 
 interface OverlayProps {
   children: ReactNode;
 }
 
 const Overlay = ({ children }: OverlayProps) => {
-  const [activeTypeOfAuth, setActiveTypeOfAuth] = useState(AuthEmum.SIGN_IN);
+  const [isLeft, setIsLeft] = useState(false);
 
-  const handleOnClick = (value: AuthEmum) => {
-    if (value !== activeTypeOfAuth) {
-      setActiveTypeOfAuth(value);
-      return;
-    }
+  const handleToggle = () => {
+    setIsLeft(!isLeft);
   };
-  const containerClass =
-    "container " +
-    (activeTypeOfAuth === AuthEmum.SIGN_UP ? "right-panel-active" : "");
+
+  const overlayClass = `overlay ${isLeft ? "move-right" : "move-left"}`;
+  const leftText = isLeft ? "ТЕКСТ4" : "ТЕКСТ2";
+  const rightText = isLeft ? "ТЕКСТ3" : "ТЕКСТ1";
 
   return (
-    <div className={containerClass} id="container">
-      {children}
-      <div className="overlay-container">
-        <div className="overlay">
-          <div className="overlay-panel overlay-left">
-            <h1>Welcome Back!</h1>
-            <p>
-              To keep connected with us please login with your personal info
-            </p>
-            <button
-              className="ghost"
-              id={AuthEmum.SIGN_IN}
-              onClick={() => handleOnClick(AuthEmum.SIGN_IN)}
-            >
-              Sign In
-            </button>
+    <div className="App2">
+      <div className="buttons">
+        <button onClick={handleToggle}>
+          {isLeft ? "Move Left" : "Move Right"}
+        </button>
+      </div>
+      <h2>Toggle Overlay</h2>
+      <div className="container">
+        <div className="text-container">
+          <div className="left-text">
+            {!isLeft ? <RightSideDesc /> : <SignIn />}
           </div>
-          <div className="overlay-panel overlay-right">
-            <h1>Hello, Friend!</h1>
-            <p>Enter your personal details and start journey with us</p>
-            <button
-              className="ghost "
-              id={AuthEmum.SIGN_UP}
-              onClick={() => handleOnClick(AuthEmum.SIGN_UP)}
-            >
-              Sign Up
-            </button>
-          </div>
+          <div className={overlayClass}></div>
+          <div className="right-text">{rightText}</div>
         </div>
       </div>
     </div>
@@ -55,3 +40,7 @@ const Overlay = ({ children }: OverlayProps) => {
 };
 
 export default Overlay;
+
+const RightSideDesc = () => {
+  return <>RIGHTSIDEDESC</>;
+};

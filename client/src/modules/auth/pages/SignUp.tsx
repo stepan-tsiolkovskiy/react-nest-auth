@@ -1,5 +1,5 @@
 const SignUp = () => {
-  return <></>
-}
+  return <div style={{ color: "black" }}>SignUp</div>;
+};
 
 export default SignUp;
