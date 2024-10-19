@@ -1,6 +1,5 @@
 import React, { ChangeEvent } from "react";
-import { IconsContainer, InputEmail, InputPassword } from "../components";
-import "./index.css";
+import { IconsContainer, InputEmail, InputPassword } from "..";
 
 function SignUp() {
   const [state, setState] = React.useState({

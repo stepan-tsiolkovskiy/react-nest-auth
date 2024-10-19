@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import "./index.css";
 import useChangeActiveTab from "../../hooks/useChangeActiveTab";
 import { AuthEmum } from "../../types/auth.enum";
 import { useAuthState } from "../../context/hooks/useAuthState";

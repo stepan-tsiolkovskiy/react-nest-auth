@@ -1,8 +1,7 @@
 import React, { ChangeEvent } from "react";
-import { IconsContainer, InputEmail, InputPassword } from "../components";
-import "./index.css";
+import { IconsContainer, InputEmail, InputPassword } from "..";
 
-function SignIn({ type }: any) {
+function SignIn() {
   const [state, setState] = React.useState({
     email: "",
     password: "",
@@ -32,7 +31,6 @@ function SignIn({ type }: any) {
 
   return (
     <div className="form-container sign-in-container">
-      <h5 style={{ color: "black" }}>{`type${type}`}</h5>
       <form onSubmit={handleOnSubmit}>
         <h1>Sign in</h1>
         <IconsContainer />
