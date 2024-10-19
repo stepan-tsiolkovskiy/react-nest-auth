@@ -2,6 +2,7 @@ import { ReactNode, useState } from "react";
 import "./index.css";
 import useChangeActiveTab from "../../hooks/useChangeActiveTab";
 import { AuthEmum } from "../../types/auth.enum";
+import { useAuthState } from "../../context/hooks/useAuthState";
 
 interface OverlayProps {
   children: ReactNode;
@@ -9,6 +10,7 @@ interface OverlayProps {
 
 const Overlay = ({ children }: OverlayProps) => {
   const { setActiveTab } = useChangeActiveTab();
+  const { activeTab } = useAuthState();
   const [type, setType] = useState("signIn");
   const handleOnClick = (text: string) => {
     if (text !== type) {
@@ -21,6 +23,8 @@ const Overlay = ({ children }: OverlayProps) => {
   };
   const containerClass =
     "container " + (type === "signUp" ? "right-panel-active" : "");
+
+  console.log(activeTab);
 
   return (
     <div className="App">
