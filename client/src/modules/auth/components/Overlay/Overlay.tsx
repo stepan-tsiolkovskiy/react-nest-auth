@@ -1,38 +1,59 @@
 import { ReactNode, useState } from "react";
 import "./index.css";
-import SignUp from "../../pages/SignUp";
-import SignIn from "../../pages/SignIn";
+import useChangeActiveTab from "../../hooks/useChangeActiveTab";
+import { AuthEmum } from "../../types/auth.enum";
 
 interface OverlayProps {
   children: ReactNode;
 }
 
 const Overlay = ({ children }: OverlayProps) => {
-  const [isLeft, setIsLeft] = useState(false);
-
-  const handleToggle = () => {
-    setIsLeft(!isLeft);
+  const { setActiveTab } = useChangeActiveTab();
+  const [type, setType] = useState("signIn");
+  const handleOnClick = (text: string) => {
+    if (text !== type) {
+      setType(text);
+      return;
+    }
   };
-
-  const overlayClass = `overlay ${isLeft ? "move-right" : "move-left"}`;
-  const leftText = isLeft ? "ТЕКСТ4" : "ТЕКСТ2";
-  const rightText = isLeft ? "ТЕКСТ3" : "ТЕКСТ1";
+  const handleTabChange = (newTab: AuthEmum) => {
+    setActiveTab(newTab);
+  };
+  const containerClass =
+    "container " + (type === "signUp" ? "right-panel-active" : "");
 
   return (
-    <div className="App2">
-      <div className="buttons">
-        <button onClick={handleToggle}>
-          {isLeft ? "Move Left" : "Move Right"}
-        </button>
-      </div>
-      <h2>Toggle Overlay</h2>
-      <div className="container">
-        <div className="text-container">
-          <div className="left-text">
-            {!isLeft ? <RightSideDesc /> : <SignIn />}
+    <div className="App">
+      <h2>Sign in/up Form</h2>
+      <div className={containerClass} id="container">
+        {children}
+        <div className="overlay-container">
+          <div className="overlay">
+            <div className="overlay-panel overlay-left">
+              <h1>Welcome Back!</h1>
+              <p>
+                To keep connected with us please login with your personal info
+              </p>
+              <button
+                className="ghost"
+                id="signIn"
+                onClick={() => handleTabChange(AuthEmum.SIGN_IN)}
+              >
+                Sign In
+              </button>
+            </div>
+            <div className="overlay-panel overlay-right">
+              <h1>Hello, Friend!</h1>
+              <p>Enter your personal details and start journey with us</p>
+              <button
+                className="ghost "
+                id="signUp"
+                onClick={() => handleTabChange(AuthEmum.SIGN_UP)}
+              >
+                Sign Up
+              </button>
+            </div>
           </div>
-          <div className={overlayClass}></div>
-          <div className="right-text">{rightText}</div>
         </div>
       </div>
     </div>
@@ -40,7 +61,3 @@ const Overlay = ({ children }: OverlayProps) => {
 };
 
 export default Overlay;
-
-const RightSideDesc = () => {
-  return <>RIGHTSIDEDESC</>;
-};

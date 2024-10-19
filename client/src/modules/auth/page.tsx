@@ -1,3 +1,4 @@
+import Overlay from "./components/Overlay/Overlay";
 import { useAuthState } from "./context/hooks/useAuthState";
 import AuthLayout from "./layout";
 import SignIn from "./pages/SignIn";
@@ -7,12 +8,11 @@ import { AuthEmum } from "./types/auth.enum";
 const AuthPage = () => {
   const { activeTab } = useAuthState();
 
-  console.log(`AuthPage==${activeTab}`);
+  const isActiveTab = activeTab === AuthEmum.SIGN_IN;
+
   return (
     <AuthLayout>
-      {/* {activeTab === AuthEmum.SIGN_IN ? <SignIn /> : <SignUp />} */}
-      {/* <SignIn />
-      <SignUp /> */}
+      <Overlay>{isActiveTab ? <SignIn /> : <SignUp />}</Overlay>
     </AuthLayout>
   );
 };
