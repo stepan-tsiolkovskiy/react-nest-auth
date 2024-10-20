@@ -22,7 +22,6 @@ const Overlay = ({ children }: OverlayProps) => {
 
   return (
     <div className="App">
-      <h2>Sign in/up Form</h2>
       <div className={containerClass} id="container">
         {children}
         <div className="overlay-container">
@@ -41,8 +40,10 @@ const Overlay = ({ children }: OverlayProps) => {
               </button>
             </div>
             <div className="overlay-panel overlay-right">
-              <h1>Hello, Friend!</h1>
-              <p>Enter your personal details and start journey with us</p>
+              <h1 style={{ marginBottom: "20px" }}>Hello, Friend!</h1>
+              <p style={{ marginBottom: "20px" }}>
+                Enter your personal details and start journey with us
+              </p>
               <button
                 className="ghost "
                 id="signUp"

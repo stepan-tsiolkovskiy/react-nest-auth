@@ -2,7 +2,7 @@ import { Formik, Form } from "formik";
 import { IconsContainer } from "..";
 import { signInSchema } from "../../utils/auth.schema";
 
-function SignIn() {
+const AuthForm = () => {
   const initialValues = {
     email: "",
     password: "",
@@ -96,6 +96,6 @@ function SignIn() {
       </Formik>
     </div>
   );
-}
+};
 
-export default SignIn;
+export default AuthForm;
