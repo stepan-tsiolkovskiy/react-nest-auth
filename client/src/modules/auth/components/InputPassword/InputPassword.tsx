@@ -23,6 +23,7 @@ const InputPassword = ({ value, onChange }: InputPasswordType) => {
         placeholder="Password"
         value={value}
         onChange={onChange}
+        className="formInput"
       />
       <button type="button" onClick={togglePasswordVisibility} className="icon">
         <FontAwesomeIcon

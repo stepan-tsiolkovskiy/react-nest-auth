@@ -1,45 +1,79 @@
-import React, { ChangeEvent } from "react";
-import { IconsContainer, InputEmail, InputPassword } from "..";
+import { Formik, Form } from "formik";
+import { IconsContainer } from "..";
+import { signInSchema } from "../../utils/auth.schema";
 
 function SignIn() {
-  const [state, setState] = React.useState({
+  const initialValues = {
     email: "",
     password: "",
-  });
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    setState({
-      ...state,
-      [event.target.name]: value,
-    });
   };
 
-  const handleOnSubmit = (evt: any) => {
-    evt.preventDefault();
-
-    const { email, password } = state;
-    alert(`You are login with email: ${email} and password: ${password}`);
-
-    for (const key in state) {
-      setState({
-        ...state,
-        [key]: "",
-      });
-    }
+  const handleOnSubmit = (values: { email: string; password: string }) => {
+    const { email, password } = values;
+    alert(`You are logging in with email: ${email} and password: ${password}`);
   };
 
   return (
     <div className="form-container sign-in-container">
-      <form onSubmit={handleOnSubmit}>
-        <h1>Sign in</h1>
-        <IconsContainer />
-        <span>or use your account</span>
-        <InputEmail value={state.email} onChange={handleChange} />
-        <InputPassword value={state.password} onChange={handleChange} />
-        <a href="#">Forgot your password?</a>
-        <button>Sign In</button>
-      </form>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={signInSchema}
+        onSubmit={handleOnSubmit}
+      >
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+        }) => (
+          <Form onSubmit={handleSubmit}>
+            <h1>Sign in</h1>
+            <IconsContainer />
+            <span>or use your account</span>
+
+            <div>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
+                placeholder="Please enter your email"
+                className="formInput"
+              />
+              {touched.email && errors.email && (
+                <p className="validation-error" style={{ color: "red" }}>
+                  {errors.email}
+                </p>
+              )}
+            </div>
+
+            <div>
+              <input
+                id="password"
+                type="password"
+                name="password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.password}
+                placeholder="Please enter your password"
+                className="formInput"
+              />
+              {touched.password && errors.password && (
+                <p className="validation-error" style={{ color: "red" }}>
+                  {errors.password}
+                </p>
+              )}
+            </div>
+
+            <a href="#">Forgot your password?</a>
+            <button type="submit">Sign In</button>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 }

@@ -83,12 +83,35 @@ form {
   text-align: center;
 }
 
+/*INPUT*/
 input {
   background-color: #eee;
   border: none;
   padding: 12px 15px;
   margin: 8px 0;
   width: 100%;
+}
+
+.input:focus {
+  border-color: red;
+  color: green;
+}
+
+.input:hover {
+  border-color: #888;
+}
+
+.formInput {
+  background-color: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.formInput:focus {
+  outline: 2px solid #ff4b2b;
 }
 
 .container {

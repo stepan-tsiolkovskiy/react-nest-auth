@@ -12,6 +12,7 @@ const InputEmail = ({ value, onChange }: InputEmailType) => (
     name="email"
     value={value}
     onChange={onChange}
+    className="formInput"
   />
 );
 
